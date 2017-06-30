@@ -17,6 +17,7 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 
 //used to search beers by name and return certain data
 app.get('/beername', (req, res) => {
+  console.log(req.query);
   let userReq = req.query.beerRequest;
   var url = 'http://api.brewerydb.com/v2/beers?key=' + API_KEY+ '&name='+ userReq;
 
@@ -37,7 +38,7 @@ app.get('/search', (req, res) => {
     let beers = [];
 
     let url = 'http://api.brewerydb.com/v2/search?key=' + API_KEY + '&q=' + userReq + '&type=beer&p=' + pageNum;
-
+    console.log(url);
     fetch(url)
       .then(res => res.json())
       .then(body => {
